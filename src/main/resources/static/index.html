@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f766e">
+    <title>कामसाथी — आसान नौकरी, बेहतर भविष्य</title>
+    <style>
+        :root{
+            --primary:#0f766e;--primary2:#115e59;--accent:#f59e0b;--bg:#f7faf9;
+            --text:#17312f;--muted:#64748b;--card:#fff;--line:#e2e8f0;
+            --success:#15803d;--danger:#dc2626;--shadow:0 10px 30px rgba(15,118,110,.10);
+        }
+        *{box-sizing:border-box}html{scroll-behavior:smooth}
+        body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Devanagari","Segoe UI",Arial,sans-serif;color:var(--text);background:var(--bg);line-height:1.55}
+        button,input,select,textarea{font:inherit}button{cursor:pointer}
+        .container{width:min(1160px,92%);margin:auto}
+        .topbar{background:#083f3a;color:#d9fffa;font-size:13px;padding:7px 0}
+        .topbar .container{display:flex;justify-content:space-between;gap:15px}
+        nav{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}
+        .navin{height:70px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+        .logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:23px;color:var(--primary);text-decoration:none}
+        .logo span{background:#dff7f3;border-radius:13px;padding:8px 10px}
+        .navlinks{display:flex;gap:22px;align-items:center}
+        .navlinks a{text-decoration:none;color:#334155;font-weight:650;font-size:14px}
+        .lang{border:1px solid var(--line);background:white;border-radius:10px;padding:8px 11px}
+        .login{border:0;background:var(--primary);color:#fff;border-radius:10px;padding:10px 16px;font-weight:800}
+        .menu{display:none;border:0;background:#eef8f6;border-radius:10px;padding:9px}
+
+        .hero{padding:55px 0 45px;background:linear-gradient(135deg,#e7f8f4 0%,#f7faf9 55%,#fff4dc 100%);overflow:hidden}
+        .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:45px;align-items:center}
+        .badge{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid #cdece7;color:var(--primary2);padding:7px 12px;border-radius:99px;font-size:13px;font-weight:800}
+        h1{font-size:clamp(35px,5vw,60px);line-height:1.08;margin:17px 0 15px;letter-spacing:-1.5px}
+        .hero p{font-size:18px;color:#53636e;max-width:620px}
+        .searchbox{margin-top:25px;background:#fff;padding:10px;border-radius:17px;box-shadow:var(--shadow);display:grid;grid-template-columns:1fr 1fr auto;gap:8px}
+        .searchfield{display:flex;align-items:center;gap:9px;padding:8px 12px;border:1px solid var(--line);border-radius:12px;background:#fff}
+        .searchfield input,.searchfield select{border:0;outline:0;width:100%;background:transparent;color:var(--text);min-width:0}
+        .voice{border:0;background:#edf8f6;border-radius:9px;padding:8px}.primary{border:0;background:var(--primary);color:white;padding:13px 20px;border-radius:11px;font-weight:850}
+        .hero-image{position:relative}
+        .hero-image img{width:100%;height:400px;object-fit:cover;border-radius:28px;box-shadow:0 25px 55px rgba(15,118,110,.20)}
+        .float-card{position:absolute;left:-18px;bottom:22px;background:white;padding:15px 17px;border-radius:16px;box-shadow:var(--shadow);font-size:14px;font-weight:750}
+        .float-card strong{display:block;color:var(--success);font-size:21px}
+
+        section{padding:62px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:25px}
+        .eyebrow{color:var(--primary);font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:.8px}
+        h2{font-size:31px;margin:5px 0 0;letter-spacing:-.6px}.sub{color:var(--muted);margin:4px 0 0}
+        .linkbtn{border:0;background:none;color:var(--primary);font-weight:800}
+
+        .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+        .step,.category,.job,.feature,.safety,.city,.testimonial{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 5px 20px rgba(15,23,42,.035)}
+        .step-num{width:42px;height:42px;border-radius:12px;background:#e3f6f2;color:var(--primary);display:grid;place-items:center;font-weight:900;font-size:18px}
+        .step h3{margin:13px 0 4px}.muted{color:var(--muted)}
+
+        .categories{display:grid;grid-template-columns:repeat(6,1fr);gap:13px}
+        .category{text-align:center;padding:18px 10px;transition:.2s}.category:hover{transform:translateY(-3px);border-color:#9adbd2}
+        .cat-icon{font-size:30px}.category b{display:block;margin-top:8px;font-size:14px}
+
+        .jobs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+        .job{padding:0;overflow:hidden}.job img{width:100%;height:155px;object-fit:cover}.job-body{padding:18px}
+        .job h3{margin:0 0 5px;font-size:20px}.company{font-size:13px;color:var(--muted)}
+        .tags{display:flex;flex-wrap:wrap;gap:6px;margin:13px 0}.tag{background:#f1f5f9;border-radius:99px;padding:5px 9px;font-size:12px}
+        .salary{color:var(--success);font-size:18px;font-weight:900}.job-meta{display:grid;grid-template-columns:1fr 1fr;gap:7px;color:#53636e;font-size:13px;margin:10px 0 15px}
+        .job-actions{display:flex;gap:8px}.job-actions button{flex:1}.outline{background:#fff;border:1px solid #b7dcd7;color:var(--primary);padding:11px;border-radius:10px;font-weight:800}
+
+        .city-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.city{padding:14px;text-align:center;font-weight:750;font-size:14px}.city:hover{background:#effaf8}
+
+        .feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+        .feature{display:flex;gap:16px;align-items:flex-start}.feature-icon{font-size:28px}.feature h3{margin:0 0 4px}
+        .safety-wrap{background:#fff7e6;border:1px solid #f6dfb1;border-radius:22px;padding:28px}.safety-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.warning{display:flex;gap:12px;align-items:flex-start;background:#fff;border-radius:13px;padding:14px}
+        .employer{background:#073f3a;color:white;border-radius:26px;padding:38px}.employer-grid{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center}.employer p{color:#cde5e2}.lightbtn{border:0;background:#fff;color:#075e58;padding:13px 19px;border-radius:11px;font-weight:900}
+
+        .cta{background:linear-gradient(120deg,#0f766e,#0b5e58);color:white;border-radius:28px;padding:45px;text-align:center}.cta h2{font-size:36px}.cta p{color:#d6efec}.cta .primary{background:#fff;color:var(--primary);margin:5px}
+
+        footer{background:#062e2b;color:#c6dedb;padding:40px 0 25px}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px}.footer-title{color:#fff;font-weight:900;margin-bottom:12px}.footer a{display:block;color:#b6d1ce;text-decoration:none;margin:7px 0;font-size:14px}.copyright{border-top:1px solid #174e49;margin-top:25px;padding-top:18px;font-size:13px;text-align:center}
+
+        .modal{display:none;position:fixed;inset:0;background:rgba(2,20,18,.58);z-index:50;padding:20px;overflow:auto}.modal.open{display:grid;place-items:center}
+        .modal-card{width:min(650px,100%);background:white;border-radius:22px;padding:27px;position:relative}.close{position:absolute;right:17px;top:13px;border:0;background:#f1f5f9;border-radius:50%;width:35px;height:35px;font-size:20px}
+        .formgrid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field label{display:block;font-size:13px;font-weight:800;margin-bottom:5px}.field input,.field select,.field textarea{width:100%;border:1px solid #d8e1e8;border-radius:10px;padding:11px;outline:none}.field textarea{min-height:90px;resize:vertical}.full{grid-column:1/-1}.success{display:none;text-align:center;padding:25px}.success.show{display:block}.success .check{font-size:55px}.ref{background:#effaf8;border-radius:12px;padding:12px;font-weight:800}
+        .empty{display:none;text-align:center;padding:35px;color:var(--muted);grid-column:1/-1}
+        .toast{position:fixed;right:18px;bottom:18px;background:#073f3a;color:white;padding:13px 16px;border-radius:11px;display:none;z-index:80;box-shadow:var(--shadow)}
+        .profile-box{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+        .progress{height:10px;background:#e8eef0;border-radius:99px;overflow:hidden}.progress span{display:block;height:100%;width:80%;background:var(--primary)}
+        .applications{display:grid;gap:10px}.app-row{display:flex;justify-content:space-between;gap:15px;align-items:center;background:#fff;border:1px solid var(--line);padding:15px;border-radius:13px}.status{padding:5px 9px;border-radius:99px;font-size:12px;font-weight:800}.yellow{background:#fff4c7;color:#9a6700}.green{background:#dcfce7;color:#166534}.blue{background:#dbeafe;color:#1d4ed8}
+
+        @media(max-width:900px){
+            .hero-grid{grid-template-columns:1fr}.hero-image{display:none}.categories{grid-template-columns:repeat(3,1fr)}
+            .jobs{grid-template-columns:1fr 1fr}.city-grid{grid-template-columns:repeat(3,1fr)}
+            .navlinks{display:none}.menu{display:block}.searchbox{grid-template-columns:1fr}.feature-grid,.safety-grid,.footer-grid,.profile-box{grid-template-columns:1fr}
+        }
+        @media(max-width:600px){
+            .topbar .container{justify-content:center}.topbar .hide-sm{display:none}.navin{height:62px}
+            section{padding:45px 0}.hero{padding:40px 0}.categories{grid-template-columns:repeat(2,1fr)}.jobs{grid-template-columns:1fr}
+            .city-grid{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr}.full{grid-column:auto}
+            h2{font-size:26px}.cta{padding:30px 18px}.cta h2{font-size:29px}.employer-grid{grid-template-columns:1fr}
+            .float-card{left:10px}.navlinks.mobile{display:flex;position:absolute;top:62px;left:0;right:0;background:#fff;padding:15px 4%;flex-direction:column;align-items:flex-start;border-bottom:1px solid var(--line)}
+        }
+    </style>
+</head>
+<body>
+
+<div class="topbar"><div class="container"><span>🇮🇳 भारत का आसान नौकरी प्लेटफॉर्म</span><span class="hide-sm">नौकरी के लिए किसी को पैसे न दें • OTP साझा न करें</span></div></div>
+
+<nav>
+    <div class="container navin">
+        <a class="logo" href="#"><span>🤝</span>कामसाथी</a>
+        <div class="navlinks" id="navlinks">
+            <a href="#jobs">नौकरी खोजें</a><a href="#categories">काम की श्रेणियां</a><a href="#employer">कंपनियों के लिए</a><a href="#help">सहायता</a>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center"><button class="lang" id="langBtn">हिंदी / English</button><button class="login" onclick="openLogin()">लॉगिन</button><button class="menu" onclick="toggleMenu()">☰</button></div>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="container hero-grid">
+        <div>
+            <span class="badge">✓ आसान आवेदन • ✓ मोबाइल से • ✓ हिंदी में</span>
+            <h1>अपने शहर में पाएं<br><span style="color:var(--primary)">अपनी पसंद की नौकरी</span></h1>
+            <p>हजारों नौकरियां • आसान आवेदन • कोई जटिल प्रक्रिया नहीं</p>
+            <div class="searchbox">
+                <div class="searchfield">🔎 <input id="keyword" placeholder="आप कौन सा काम चाहते हैं?"></div>
+                <div class="searchfield">📍 <select id="city"><option value="">किस शहर में नौकरी चाहिए?</option><option>दिल्ली</option><option>नोएडा</option><option>ग्रेटर नोएडा</option><option>गाजियाबाद</option><option>गुरुग्राम</option><option>फरीदाबाद</option><option>मुंबई</option><option>पुणे</option><option>बेंगलुरु</option><option>हैदराबाद</option><option>चेन्नई</option><option>अहमदाबाद</option><option>जयपुर</option><option>लखनऊ</option><option>चंडीगढ़</option><option>कोलकाता</option><option>इंदौर</option></select></div>
+                <button class="primary" onclick="searchJobs()">🔍 नौकरी खोजें</button>
+            </div>
+            <button class="linkbtn" style="margin-top:13px" onclick="startVoice()">🎤 बोलकर नौकरी खोजें</button>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1000&q=80" alt="Indian worker">
+            <div class="float-card">आज <strong>1,240+</strong> नौकरियां उपलब्ध</div>
+        </div>
+    </div>
+</header>
+
+<section>
+    <div class="container">
+        <div class="section-head"><div><div class="eyebrow">Simple Process</div><h2>नौकरी ढूंढना अब आसान है</h2><p class="sub">सिर्फ तीन आसान कदम</p></div></div>
+        <div class="steps">
+            <div class="step"><div class="step-num">1</div><h3>काम चुनें</h3><div class="muted">Security Guard, Driver, Helper और अपनी पसंद का काम चुनें।</div></div>
+            <div class="step"><div class="step-num">2</div><h3>शहर चुनें</h3><div class="muted">जिस शहर में काम करना है, वह शहर चुनें।</div></div>
+            <div class="step"><div class="step-num">3</div><h3>आवेदन करें</h3><div class="muted">अपनी जानकारी भरें और नौकरी के लिए आवेदन करें।</div></div>
+        </div>
+    </div>
+</section>
+
+<section id="categories" style="background:#eef8f6">
+    <div class="container">
+        <div class="section-head"><div><div class="eyebrow">Job Categories</div><h2>काम की श्रेणी चुनें</h2></div><button class="linkbtn" onclick="document.getElementById('jobs').scrollIntoView()">सभी नौकरियां →</button></div>
+        <div class="categories" id="categoryGrid"></div>
+    </div>
+</section>
+
+<section id="jobs">
+    <div class="container">
+        <div class="section-head"><div><div class="eyebrow">Featured Jobs</div><h2>आपके लिए उपलब्ध नौकरियां</h2><p class="sub" id="jobCount">6 नौकरियां मिलीं</p></div><button class="linkbtn" onclick="resetJobs()">सभी देखें ↻</button></div>
+        <div class="jobs" id="jobGrid"></div><div class="empty" id="empty">😕 इस खोज से कोई नौकरी नहीं मिली।<br>दूसरा काम या शहर चुनकर देखें।</div>
+    </div>
+</section>
+
+<section style="background:#eef8f6">
+    <div class="container">
+        <div class="section-head"><div><div class="eyebrow">Popular Cities</div><h2>लोकप्रिय शहर</h2></div></div>
+        <div class="city-grid" id="cityGrid"></div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="feature-grid">
+            <div class="feature"><div class="feature-icon">🎤</div><div><h3>बोलकर नौकरी खोजें</h3><div class="muted">टाइप करने में परेशानी हो तो बोलकर कहें — “मुझे नोएडा में सिक्योरिटी गार्ड की नौकरी चाहिए।”</div></div></div>
+            <div class="feature"><div class="feature-icon">📱</div><div><h3>आसान आवेदन</h3><div class="muted">अपना ईमेल और पासवर्ड से आसानी से प्रोफाइल बनाएं।</div></div></div>
+            <div class="feature"><div class="feature-icon">🔔</div><div><h3>नई नौकरी का अलर्ट</h3><div class="muted">अपना शहर, काम और सैलरी चुनें और नई नौकरी की जानकारी पाएं।</div></div></div>
+            <div class="feature"><div class="feature-icon">🟢</div><div><h3>Verified Employer</h3><div class="muted">जहां उपलब्ध हो, नौकरी पर कंपनी की verification status साफ दिखाई जाएगी।</div></div></div>
+        </div>
+    </div>
+</section>
+
+<section id="help">
+    <div class="container">
+        <div class="safety-wrap">
+            <div class="section-head"><div><div class="eyebrow">Safety First</div><h2>नौकरी के नाम पर धोखाधड़ी से बचें</h2></div><button class="outline" onclick="reportIssue()">नौकरी की शिकायत करें</button></div>
+            <div class="safety-grid">
+                <div class="warning">⚠️ <b>नौकरी पाने के लिए किसी को पैसे न दें।</b></div>
+                <div class="warning">🔐 <b>अपना OTP किसी के साथ साझा न करें।</b></div>
+                <div class="warning">🏦 <b>बैंक PIN या Password कभी न बताएं।</b></div>
+                <div class="warning">🚩 <b>संदिग्ध नौकरी की जानकारी हमें रिपोर्ट करें।</b></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="employer">
+    <div class="container">
+        <div class="employer">
+            <div class="employer-grid"><div><div class="eyebrow" style="color:#8de4d9">For Employers</div><h2 style="color:white">अपने काम के लिए सही कर्मचारी खोजें</h2><p>कंपनी रजिस्टर करें, नौकरी पोस्ट करें, उम्मीदवारों की जानकारी देखें और सही व्यक्ति को shortlist करें।</p></div><button class="lightbtn" onclick="openEmployer()">नौकरी पोस्ट करें</button></div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="cta"><h2>आज ही नौकरी खोजें</h2><p>आपका अगला काम सिर्फ कुछ क्लिक दूर है।</p><button class="primary" onclick="document.getElementById('jobs').scrollIntoView()">🔍 नौकरी खोजें</button><button class="primary" onclick="openProfile()">👤 अपना प्रोफाइल बनाएं</button></div>
+    </div>
+</section>
+
+<footer>
+    <div class="container footer-grid">
+        <div><div class="logo" style="color:#7de0d5"><span>🤝</span>कामसाथी</div><p>Job Portal + Staffing Platform + Worker Assistance Platform</p></div>
+        <div><div class="footer-title">नौकरी</div><a href="#jobs">नौकरी खोजें</a><a href="#categories">काम की श्रेणियां</a><a href="#">मेरे आवेदन</a></div>
+        <div><div class="footer-title">कंपनियां</div><a href="#employer">नौकरी पोस्ट करें</a><a href="#">Employer Login</a><a href="#">Verification</a></div>
+        <div><div class="footer-title">सहायता</div><a href="#help">सुरक्षा</a><a href="#" onclick="reportIssue()">शिकायत करें</a><a href="tel:+911234567890">📞 कॉल करें</a><a href="https://wa.me/911234567890" target="_blank">💬 WhatsApp</a></div>
+    </div>
+    <div class="container copyright">© 2026 कामसाथी • गोपनीयता नीति • Terms & Conditions • Fraud Awareness</div>
+</footer>
+
+<div class="modal" id="applyModal">
+    <div class="modal-card">
+        <button class="close" onclick="closeModal('applyModal')">×</button>
+        <div id="applyFormWrap">
+            <div class="eyebrow">Easy Application</div><h2 id="applyTitle">नौकरी के लिए आवेदन करें</h2><p class="sub" id="applyCompany"></p>
+            <form id="applyForm" onsubmit="submitApplication(event)">
+                <div class="formgrid">
+                    <div class="field"><label>आपका नाम *</label><input required id="name" placeholder="पूरा नाम"></div>
+                    <div class="field"><label>मोबाइल नंबर *</label><input required id="phone" type="tel" pattern="[0-9]{10}" placeholder="10 अंकों का मोबाइल नंबर"></div>
+                    <div class="field"><label>उम्र</label><input id="age" type="number" min="18" max="70" placeholder="उम्र"></div>
+                    <div class="field"><label>लिंग</label><select id="gender"><option>चुनें</option><option>पुरुष</option><option>महिला</option><option>अन्य</option></select></div>
+                    <div class="field"><label>आप किस शहर में रहते हैं?</label><input id="homeCity" placeholder="जैसे गाजियाबाद"></div>
+                    <div class="field"><label>किस शहर में काम चाहिए?</label><select id="workCity"><option>चुनें</option><option>दिल्ली</option><option>नोएडा</option><option>गाजियाबाद</option><option>गुरुग्राम</option><option>मुंबई</option><option>पुणे</option><option>बेंगलुरु</option></select></div>
+                    <div class="field"><label>काम का अनुभव</label><select id="experience"><option>कोई अनुभव नहीं</option><option>1–2 साल</option><option>3–5 साल</option><option>5+ साल</option></select></div>
+                    <div class="field"><label>उम्मीद की सैलरी</label><input id="salary" placeholder="जैसे ₹18,000"></div>
+                    <div class="field full"><label>काम का अनुभव / अतिरिक्त जानकारी</label><textarea id="note" placeholder="आपने पहले कहां काम किया है?"></textarea></div>
+                    <div class="field"><label>फोटो (वैकल्पिक)</label><input type="file" accept="image/*"></div>
+                    <div class="field"><label>ID / Resume (वैकल्पिक)</label><input type="file"></div>
+                </div>
+                <button class="primary" style="width:100%;margin-top:18px">नौकरी के लिए आवेदन करें</button>
+            </form>
+        </div>
+        <div class="success" id="success">
+            <div class="check">✅</div><h2>आपका आवेदन सफलतापूर्वक भेज दिया गया है।</h2><p>कंपनी आपके मोबाइल नंबर पर आपसे संपर्क कर सकती है।</p><div class="ref">Application ID: <span id="ref"></span></div><button class="primary" style="margin-top:16px" onclick="closeModal('applyModal')">ठीक है</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="loginModal">
+    <div class="modal-card">
+        <button class="close" onclick="closeModal('loginModal')">×</button>
+        <div class="eyebrow" id="authEyebrow">Login</div><h2 id="authTitle">लॉगिन करें</h2><p class="sub" id="authSub">अपना ईमेल और पासवर्ड डालें।</p>
+        <form id="authForm" onsubmit="submitAuth(event)">
+            <div id="registerFields" style="display:none">
+                <div class="field" style="margin-top:14px"><label>आपका नाम *</label><input id="authName" autocomplete="name" maxlength="100" placeholder="पूरा नाम"></div>
+                <div class="field" style="margin-top:12px"><label>मोबाइल नंबर (वैकल्पिक)</label><input id="authPhone" type="tel" autocomplete="tel" maxlength="10" placeholder="10 अंकों का मोबाइल नंबर"></div>
+            </div>
+            <div class="field" style="margin-top:14px"><label>ईमेल *</label><input id="authEmail" type="email" required autocomplete="email" maxlength="150" placeholder="name@example.com"></div>
+            <div class="field" style="margin-top:12px"><label>पासवर्ड *</label><input id="authPassword" type="password" required minlength="8" maxlength="72" autocomplete="current-password" placeholder="कम से कम 8 अक्षर (अक्षर + अंक)"></div>
+            <button class="primary" id="authSubmit" style="width:100%;margin-top:16px">लॉगिन</button>
+        </form>
+        <p style="text-align:center;margin-top:14px"><button type="button" class="linkbtn" id="authSwitch" onclick="switchAuth()">नया खाता बनाएं</button></p>
+    </div>
+</div>
+
+<div class="modal" id="profileModal">
+    <div class="modal-card">
+        <button class="close" onclick="closeModal('profileModal')">×</button><div class="eyebrow">Worker Profile</div><h2>मेरा प्रोफाइल</h2>
+        <div class="profile-box">
+            <div><b>प्रोफाइल पूरा करें</b><p class="muted">आपका प्रोफाइल 80% पूरा है</p><div class="progress"><span></span></div></div>
+            <div style="background:#eef8f6;padding:14px;border-radius:12px"><b>🟢 आपकी प्रोफाइल नौकरी के लिए तैयार है</b><p class="muted">काम और शहर की जानकारी भरने से बेहतर नौकरी मिल सकती है।</p></div>
+        </div>
+        <div class="applications" style="margin-top:18px">
+            <div class="app-row"><div><b>Security Guard</b><br><span class="muted">Noida • ABC Facility Services</span></div><span class="status yellow">आवेदन भेजा गया</span></div>
+            <div class="app-row"><div><b>Warehouse Helper</b><br><span class="muted">Greater Noida • XYZ Logistics</span></div><span class="status blue">कंपनी ने देखा</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="employerModal">
+    <div class="modal-card">
+        <button class="close" onclick="closeModal('employerModal')">×</button><div class="eyebrow">For Employers</div><h2>नौकरी पोस्ट करें</h2>
+        <div class="formgrid">
+            <div class="field"><label>कंपनी का नाम *</label><input placeholder="Company name"></div>
+            <div class="field"><label>मोबाइल नंबर *</label><input placeholder="10 अंकों का नंबर"></div>
+            <div class="field"><label>नौकरी का नाम *</label><input placeholder="जैसे Security Guard"></div>
+            <div class="field"><label>शहर *</label><select><option>नोएडा</option><option>दिल्ली</option><option>गुरुग्राम</option><option>मुंबई</option></select></div>
+            <div class="field"><label>सैलरी</label><input placeholder="₹15,000 – ₹18,000"></div>
+            <div class="field"><label>आवश्यक अनुभव</label><select><option>0–2 वर्ष</option><option>3–5 वर्ष</option><option>5+ वर्ष</option></select></div>
+            <div class="field full"><label>काम की जानकारी</label><textarea placeholder="काम क्या करना होगा?"></textarea></div>
+        </div>
+        <button class="primary" style="width:100%;margin-top:16px" onclick="showToast('आपकी job posting request प्राप्त हो गई है।')">नौकरी पोस्ट करें</button>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+    const jobs=[
+        {id:1,title:"Security Guard",hi:"सिक्योरिटी गार्ड",company:"ABC Facility Services",city:"नोएडा",location:"Sector 62",salary:"₹15,000 – ₹18,000",hours:"8–12 घंटे",exp:"0–2 वर्ष",food:"उपलब्ध",stay:"उपलब्ध",type:"Full Time",img:"https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=800&q=80"},
+        {id:2,title:"Housekeeping Staff",hi:"हाउसकीपिंग स्टाफ",company:"Prime Hospitality",city:"गुरुग्राम",location:"Sector 44",salary:"₹14,000 – ₹17,000",hours:"9 घंटे",exp:"कोई अनुभव नहीं",food:"उपलब्ध",stay:"नहीं",type:"Full Time",img:"https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80"},
+        {id:3,title:"Warehouse Helper",hi:"वेयरहाउस हेल्पर",company:"XYZ Logistics",city:"ग्रेटर नोएडा",location:"Ecotech 3",salary:"₹16,000 – ₹20,000",hours:"9 घंटे",exp:"0–2 वर्ष",food:"नहीं",stay:"उपलब्ध",type:"Full Time",img:"https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80"},
+        {id:4,title:"Delivery Boy",hi:"डिलीवरी बॉय",company:"QuickDrop Services",city:"दिल्ली",location:"Dwarka",salary:"₹18,000 – ₹25,000",hours:"8–10 घंटे",exp:"कोई अनुभव नहीं",food:"नहीं",stay:"नहीं",type:"Full Time",img:"https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=800&q=80"},
+        {id:5,title:"Factory Worker",hi:"फैक्ट्री वर्कर",company:"Industrial Works Pvt Ltd",city:"फरीदाबाद",location:"Sector 24",salary:"₹15,500 – ₹19,000",hours:"8 घंटे",exp:"1–2 साल",food:"उपलब्ध",stay:"उपलब्ध",type:"Full Time",img:"https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=800&q=80"},
+        {id:6,title:"Driver",hi:"ड्राइवर",company:"City Transport Services",city:"गाजियाबाद",location:"Indirapuram",salary:"₹17,000 – ₹23,000",hours:"10 घंटे",exp:"2+ वर्ष",food:"नहीं",stay:"नहीं",type:"Full Time",img:"https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=800&q=80"}
+    ];
+    const categories=[
+        ["🛡️","सुरक्षा गार्ड","Security Guard"],["🧹","हाउसकीपिंग","Housekeeping"],["🚚","ड्राइवर","Driver"],["📦","वेयरहाउस हेल्पर","Warehouse"],["🏗️","निर्माण मजदूर","Construction"],["🏭","फैक्ट्री वर्कर","Factory"],["🍽️","होटल/रेस्टोरेंट","Hotel"],["🏢","ऑफिस बॉय","Office Boy"],["🚴","डिलीवरी बॉय","Delivery"],["🌳","माली","Gardener"],["🔧","इलेक्ट्रिशियन हेल्पर","Electrician"],["🔧","प्लंबर हेल्पर","Plumber"]
+    ];
+    const cities=["दिल्ली","नोएडा","ग्रेटर नोएडा","गाजियाबाद","गुरुग्राम","फरीदाबाद","मुंबई","पुणे","बेंगलुरु","हैदराबाद","चेन्नई","अहमदाबाद","जयपुर","लखनऊ","चंडीगढ़","कोलकाता","इंदौर"];
+
+    function renderCategories(){
+        document.getElementById('categoryGrid').innerHTML=categories.map(c=>`<button class="category" onclick="categorySearch('${c[2]}')"><div class="cat-icon">${c[0]}</div><b>${c[1]}</b></button>`).join('');
+    }
+    function renderCities(){
+        document.getElementById('cityGrid').innerHTML=cities.map(c=>`<button class="city" onclick="citySearch('${c}')">📍 ${c}</button>`).join('');
+    }
+    function renderJobs(list=jobs){
+        const grid=document.getElementById('jobGrid'); document.getElementById('jobCount').textContent=list.length+" नौकरियां मिलीं";
+        document.getElementById('empty').style.display=list.length?"none":"block";
+        grid.innerHTML=list.map(j=>`<article class="job">
+  <img src="${j.img}" alt="${j.hi}" loading="lazy"><div class="job-body"><h3>${j.hi}</h3><div class="company">${j.company} • 🟢 Verified Employer</div>
+  <div class="salary">${j.salary} / महीना</div><div class="tags"><span class="tag">📍 ${j.city}</span><span class="tag">${j.type}</span></div>
+  <div class="job-meta"><span>🕐 ${j.hours}</span><span>⭐ ${j.exp}</span><span>🍛 खाना: ${j.food}</span><span>🛏️ रहना: ${j.stay}</span></div>
+  <div class="job-actions"><button class="outline" onclick="viewJob(${j.id})">विवरण</button><button class="primary" onclick="openApply(${j.id})">अभी आवेदन करें</button></div>
+  </div></article>`).join('');
+    }
+    function searchJobs(){
+        const k=document.getElementById('keyword').value.trim().toLowerCase(), c=document.getElementById('city').value;
+        const list=jobs.filter(j=>(!k || (j.title+" "+j.hi+" "+j.company).toLowerCase().includes(k)) && (!c || j.city===c));
+        renderJobs(list);document.getElementById('jobs').scrollIntoView({behavior:'smooth'});
+    }
+    function categorySearch(k){document.getElementById('keyword').value=k;searchJobs()}
+    function citySearch(c){document.getElementById('city').value=c;searchJobs()}
+    function resetJobs(){document.getElementById('keyword').value='';document.getElementById('city').value='';renderJobs();document.getElementById('jobs').scrollIntoView({behavior:'smooth'})}
+    function viewJob(id){
+        const j=jobs.find(x=>x.id===id);
+        document.getElementById('applyTitle').textContent=j.hi+" — नौकरी विवरण";
+        document.getElementById('applyCompany').innerHTML=`<b>${j.company}</b> • ${j.city}, ${j.location}<br>💰 ${j.salary} • 🕐 ${j.hours} • ⭐ ${j.exp}<br>🍛 खाना: ${j.food} • 🛏️ रहना: ${j.stay}`;
+        openModal('applyModal');
+    }
+    function openApply(id){
+        const j=jobs.find(x=>x.id===id);document.getElementById('applyTitle').textContent=j.hi+" के लिए आवेदन";
+        document.getElementById('applyCompany').innerHTML=`${j.company} • ${j.city} • ${j.salary}/महीना`;
+        document.getElementById('applyFormWrap').style.display='block';document.getElementById('success').classList.remove('show');openModal('applyModal');
+    }
+    function submitApplication(e){e.preventDefault();document.getElementById('ref').textContent='KS'+Date.now().toString().slice(-7);document.getElementById('applyFormWrap').style.display='none';document.getElementById('success').classList.add('show')}
+    function openModal(id){document.getElementById(id).classList.add('open')}
+    function closeModal(id){document.getElementById(id).classList.remove('open')}
+    function openLogin(){openModal('loginModal')}
+    function openProfile(){openModal('profileModal')}
+    function openEmployer(){openModal('employerModal')}
+    function reportIssue(){showToast('शिकायत सुविधा Demo में तैयार है। Production में इसे support ticket system से जोड़ें।')}
+    function startVoice(){
+        if(!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)){showToast('आपके browser में voice search उपलब्ध नहीं है।');return}
+        const R=window.SpeechRecognition||window.webkitSpeechRecognition,r=new R();r.lang='hi-IN';r.interimResults=false;
+        showToast('🎤 बोलिए: “मुझे नोएडा में सिक्योरिटी गार्ड की नौकरी चाहिए”');
+        r.onresult=e=>{const t=e.results[0][0].transcript;document.getElementById('keyword').value=t;for(const c of cities)if(t.includes(c)){document.getElementById('city').value=c;break}searchJobs()};r.start();
+    }
+    function toggleMenu(){document.getElementById('navlinks').classList.toggle('mobile')}
+    function showToast(t){const x=document.getElementById('toast');x.textContent=t;x.style.display='block';clearTimeout(window.tt);window.tt=setTimeout(()=>x.style.display='none',3200)}
+    document.getElementById('langBtn').onclick=()=>showToast('English version को production में i18n से जोड़ा जा सकता है।');
+    renderCategories();renderCities();renderJobs();
+</script>
+<script src="/js/i18n.js"></script>
+<script src="/js/api.js"></script>
+</body>
+</html>
